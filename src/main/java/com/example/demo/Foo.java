@@ -42,5 +42,11 @@ public class Foo {
 
         UnaryOperator<Integer> plus10_3 = (i) -> i+10; //입력타입과 리턴타입이 같을때. (Function을 상속받음)
 
+
+
+        /// 4장. 람다표현식
+        Supplier<Integer> get10_lamda= () -> 10;
+
+        BinaryOperator<Integer> biget10_lamda=(a,b) -> a+b; // Integer::sum; 이렇게 적을수 있음.
     }
 }
