@@ -31,5 +31,15 @@ public class App {
         String[] names= {"keesun","whiteship","toby"};
         Arrays.sort(names, String::compareToIgnoreCase);
         System.out.println(Arrays.toString(names));
+
+        /////6강 인터페이스 기본 메소드와 스태틱 메소드
+        Boo boo=new DefaultBoo("junseong");
+        boo.printName();
+        boo.printNameUpperCase();
+
+        Boo.printAnything();
+
+
+
     }
 }
