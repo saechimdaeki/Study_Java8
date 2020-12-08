@@ -2,19 +2,20 @@ package com.example.demo.defaultMethod;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class defaultApp {
     public static void main(String[] args) {
-        List<String> name= new ArrayList<>();
-        name.add("keesun");
-        name.add("whiteship");
-        name.add("toby");
-        name.add("foo");
+        List<String> names= new ArrayList<>();
+        names.add("keesun");
+        names.add("whiteship");
+        names.add("toby");
+        names.add("foo");
 
-        name.forEach(System.out::println);
+        names.forEach(System.out::println);
 
 
-        Spliterator<String> spliterator=name.spliterator();
+        Spliterator<String> spliterator=names.spliterator();
         Spliterator<String> spliterator1=spliterator.trySplit();
         while (spliterator.tryAdvance(System.out::println));
         System.out.println("==============");
@@ -22,7 +23,7 @@ public class defaultApp {
 
         System.out.println("======================");
 
-        Set<String> k = name.stream().map(String::toUpperCase)
+        Set<String> k = names.stream().map(String::toUpperCase)
                 .filter(s -> s.startsWith("K"))
                 .collect(Collectors.toSet());
 
@@ -33,7 +34,28 @@ public class defaultApp {
 
 
         Comparator<String> compareToIgnoreCase=String::compareToIgnoreCase;
-        name.sort(compareToIgnoreCase.reversed());
-        name.forEach(System.out::println);
+        names.sort(compareToIgnoreCase.reversed());
+        names.forEach(System.out::println);
+
+
+
+        ///// 8장 Stream.
+        System.out.println("=================8장 Stream================");
+
+        Stream<String> stringStream=names.stream().map(String::toUpperCase);
+        stringStream.forEach(System.out::println);
+
+        names.stream().map((s)->{
+            System.out.println(s);
+            return s.toUpperCase();
+        });  // 중개형 오퍼레이터는 출력을 하지 않음..
+        //  이 뒤에 .collect(Collectors.toList()); 를붙인다면 종료형 오퍼레이터임.
+
+        List<String> collect=names.parallelStream().map((s) -> {
+            System.out.println(s+" "+Thread.currentThread().getName());
+            return s.toUpperCase();
+        }).collect(Collectors.toList());
+        collect.forEach(System.out::println); //parallelStream을 사용하면 병렬적으로 처리가능
+
     }
 }
