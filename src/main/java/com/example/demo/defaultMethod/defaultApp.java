@@ -55,7 +55,7 @@ public class defaultApp {
             System.out.println(s+" "+Thread.currentThread().getName());
             return s.toUpperCase();
         }).collect(Collectors.toList());
-        collect.forEach(System.out::println); //parallelStream을 사용하면 병렬적으로 처리가능
+        collect.forEach(System.out::println); //parallelStream을 사용하면 병렬적으로 처리가능 (데이터가 정말 방대하게 큰경우 사용할것)
 
     }
 }
