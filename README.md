@@ -201,3 +201,21 @@
 - reduce(identity, BiFunction), collect(), sum(), max()
 - 예) 모든 숫자 합 구하기
 - 예) 모든 데이터를 하나의 List 또는 Set에 옮겨 담기
+
+# 10 Optional 소개
+### 자바 프로그래밍에서 NullPointerException을 종종 보게되는 이유
+- null을 리턴하니까!
+- null체크를 깜빡했으니까!
+### 메소드에서 작업중 특별한 상황에서 값을 리턴할 수 없는경우 선택할 수 있는 방법
+- 예외를 던진다(비싸다, 스택트레이스를 찍어두니까)
+- null을 리턴한다
+- Optional을 리턴한다 
+
+## OpTIONAL
+- 오직 값 한개가 들어있을 수 도 없을 수 도있는 컨테이너
+### 주의할 것
+- 리턴값으로만 쓰기를 권장한다 (메소드 매개변수 타입, 키타입, 인스턴스 필드타입으로 쓰지말자)
+- Optional을 리턴하는 메소드에서 null을 리턴하지 말자.
+- 프리미티브 타입용 Optional은 따로있다 . OptionalInt,OptionalLong,...
+- Collection,Map,Stream Array, Optional은 Optioanal로 감싸지 말 것.
+

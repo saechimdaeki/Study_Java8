@@ -1,5 +1,9 @@
 package com.example.demo.streamApi;
 
+import com.example.demo.optional.Progress;
+
+import java.util.Optional;
+
 public class OnlineClass {
 
     private Integer id;
@@ -7,6 +11,23 @@ public class OnlineClass {
     private String title;
 
     private boolean closed;
+
+    private Progress progress;  //필드에 Optional 쓰지말기!!
+
+//    public Progress getProgress() {
+////        if(this.progress==null){
+////            throw new IllegalStateException();
+////        }
+//        return progress;
+//    }
+
+    public Optional<Progress> getProcess(){
+        return Optional.ofNullable(progress);
+    }
+
+    public void setProgress(Progress progress) {
+        this.progress = progress;
+    }
 
     public OnlineClass(Integer id, String title, boolean closed) {
         this.id = id;
