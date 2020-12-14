@@ -1,12 +1,11 @@
 package com.example.demo.conCurrent;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.*;
 
 public class ConcurrentApp {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
         System.out.println(Thread.currentThread().getName()); //메인쓰레드
 
         MyThread myThread=new MyThread();
@@ -52,6 +51,40 @@ public class ConcurrentApp {
 
 
        /// executorService1.shutdown();
+
+        System.out.println("=============Callable과 Future========================");
+        ExecutorService callableExecutorService=Executors.newSingleThreadExecutor();
+        Callable<String> hello= () -> {
+            Thread.sleep(2000L);
+            return "Hello";
+        };
+
+        Callable<String> java= () -> {
+            Thread.sleep(3000L);
+            return "Java";
+        };
+
+
+        Callable<String> junseong= () -> {
+            Thread.sleep(1000L);
+            return "Junseong";
+        };
+       // Future<String> helloFuture = callableExecutorService.submit(hello);
+       // System.out.println(helloFuture.isDone());//끝났으면 true 진행중이면 false
+       // System.out.println("Started!");
+
+       // helloFuture.get(); //get 만나는순간 결과값 가져올때까지 기다림.. (블록킹)
+       // System.out.println(helloFuture.isDone());
+       // System.out.println("End!!");
+
+
+        List<Future<String>> futures = callableExecutorService
+                .invokeAll(Arrays.asList(hello, java, junseong)); //한번에 받아옴
+        for (Future<String> f : futures) {
+            System.out.println(f.get());
+        }
+
+        //callableExecutorService.shutdown();
 
     }
     private static Runnable getRunnable(String message){
