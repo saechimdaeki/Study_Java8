@@ -549,3 +549,45 @@ System.out.println("parallel sorting took " + (System.nanoTime() - start));
 - serial sorting took 548957
 - parallel sorting took 364074
 - 알고리즘 효율성은 같다. 시간 O(n log N) 공간 O(n)
+
+
+# Metaspace
+### JVM의 여러 메모리 영역 중에 PermGen 메모리 영역이 없어지고 Metaspace 영역이 생겼다.
+
+### PermGen
+- permanent generation, 클래스 메타데이터를 담는 곳.
+- Heap영역에 속함
+- 기본값으로 제한된 크기를 가지고 있음
+- XX: PermSize=N, PermGen 초기 사이즈 설정
+- XX: MaxPermSize=N, PermGen 최대 사이즈 설정
+
+### Metaspace
+- 클래스 메타데이터를 담는 곳
+- Heap 영역이 아니라, Native 메모리 영역이다.
+- 기본값으로 제한된 크기를 가지고 있지 않다 (필요한 만큼 계속 늘어난다.)
+- 자바 8 부터는 PermGen 관련 java옵션은 무시한다. 
+- XX: MetaspaceSize=N, Metaspace 초기 사이즈 설정
+- XX: MaxMetaspaceSize=N, Metaspace 최대사이즈 설정
+
+
+# 22. 요약
+```
+
+자바 8의 주요 기능의 의미
+● 함수형 프로그래밍
+○ 함수형 인터페이스
+○ 람다 표현식
+○ 메소드 레퍼런스
+● 비동기 프로그래밍
+○ CompletableFuture
+● 편의성 개선
+○ Optional
+○ Date & Time
+○ 인터페이스
+○ ...
+앞으로
+● 당분간은 자바8이 가장 많이 쓰이는 버전으로 남을 가능성이 높다.
+● 하지만 시간이 지날수록 계속해서 자바 11로 넘어가는 비율이 높아질 것이다.
+● 따라서 자바 9부터 자바 11까지의 기능도 학습해 둘 것!
+
+```
